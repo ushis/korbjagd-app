@@ -3,6 +3,6 @@ dist
 .tmp
 .sass-cache
 bower_components
-app/scipts/config.js
+app/scripts/config.js
 *.swo
 *.swp
