@@ -1,0 +1,27 @@
+<div>
+  <korbjagd-header></korbjagd-header>
+
+  <div class="sidebar-container">
+    <div class="image avatar" ng-class="{fallback: !currentUser.avatar}">
+        <img ng-src="{{currentUser.avatar.url}}">
+    </div>
+  </div>
+
+  <div class="confirmation-container">
+    <div class="message">
+      <div>
+        Do you really want to delete your account
+        <span ng-bind="currentUser.username" class="name"></span>
+        including all your comments?
+      </div>
+      <div class="note">
+        <strong>Note:</strong> It is <strong>not</strong> possible to undo this action.
+      </div>
+    </div>
+
+    <div class="actions">
+      <a ui-sref="map.app.profile">Cancel</a>
+      <span class="btn" ng-click="delete()">Delete</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div>
+  <korbjagd-header></korbjagd-header>
+
+  <div class="sidebar-container">
+    <div class="image basket" ng-class="{fallback: !basket.photo}">
+        <img ng-src="{{basket.photo.url}}">
+    </div>
+  </div>
+
+  <div class="confirmation-container">
+    <div class="message">
+      <div>
+        Do you really want to delete the basket
+        <span ng-bind="basket.name" class="name"></span>
+        including all associated comments and photos?
+      </div>
+      <div class="note">
+        <strong>Note:</strong> It is <strong>not</strong> possible to undo this action.
+      </div>
+    </div>
+
+    <div class="actions">
+      <a ui-sref="map.app.basket.details({basketId: basket.id})">Cancel</a>
+      <span class="btn" ng-click="delete()">Delete</span>
+    </div>
+  </div>
+</div>

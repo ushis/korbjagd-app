@@ -1,0 +1,12 @@
+<ul class="nav">
+  <li>
+    <a ui-sref="map.app.basket.details({basketId: basket.id})" ui-sref-active="active" class="left">
+      <span class="label">Details</span>
+    </a>
+  </li>
+  <li class="right">
+    <a ui-sref="map.app.basket.comments({basketId: basket.id})" ui-sref-active="active" class="right">
+      <span class="label">Comments (<span ng-bind="basket.comments_count"></span>)</span>
+    </a>
+  </li>
+</ul>

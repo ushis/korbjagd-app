@@ -1,0 +1,23 @@
+<div>
+  <korbjagd-header></korbjagd-header>
+
+  <div class="sidebar-container">
+    <div class="image comment fallback"></div>
+  </div>
+
+  <div class="confirmation-container">
+    <div class="message">
+      <div>
+        Do you really want to delete your comment?
+      </div>
+      <div class="note">
+        <strong>Note:</strong> It is <strong>not</strong> possible to undo this action.
+      </div>
+    </div>
+
+    <div class="actions">
+      <a ui-sref="map.app.basket.comments({basketId: basket.id})">Cancel</a>
+      <span class="btn" ng-click="delete()">Delete</span>
+    </div>
+  </div>
+</div>

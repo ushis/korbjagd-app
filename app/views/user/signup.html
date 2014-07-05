@@ -1,0 +1,21 @@
+<form ng-submit="submit()">
+  <div>
+    <span class="error" ng-bind="errors.username"></span>
+    <input type="text" ng-model="user.username" placeholder="Username" required>
+  </div>
+  <div>
+    <span class="error" ng-bind="errors.email"></span>
+    <input type="email" ng-model="user.email" placeholder="Email" required>
+  </div>
+  <div>
+    <span class="error" ng-bind="errors.password"></span>
+    <input type="password" ng-model="user.password" placeholder="Password" required>
+  </div>
+  <div>
+    <span class="error" ng-bind="errors.password_confirmation"></span>
+    <input type="password" ng-model="user.password_confirmation" placeholder="Password Confirmation" required>
+  </div>
+  <div class="submit">
+    <button type="submit" class="btn">Sign Up</button>
+  </div>
+</form>

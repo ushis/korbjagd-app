@@ -1,0 +1,26 @@
+<div class="header" ng-class="{'signed-in': !!currentUser}">
+  <h1>
+    <a ui-sref="map.app.home">
+      korbjagd
+    </a>
+  </h1>
+
+  <div class="search-container">
+    <input id="search-places" type="text" placeholder="Search for places...">
+  </div>
+
+  <div class="auth-container">
+    <div ng-if="currentUser" class="user-menu">
+      <a ui-sref="map.app.profile" class="sign ion ion-person"></a>
+      <span ng-click="signOut()" class="sign ion ion-power"></span>
+    </div>
+
+    <div ng-if="!currentUser">
+      <a ui-sref="map.app.sign.in" class="sign">
+        <span class="ionn ion-log-in"></span> Sign In
+      </a>
+    </div>
+  </div>
+</div>
+
+<div ui-view class="main-container" ng-class="appClass"></div>

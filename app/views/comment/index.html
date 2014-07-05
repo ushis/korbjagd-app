@@ -1,0 +1,58 @@
+<div>
+  <korbjagd-header></korbjagd-header>
+
+  <div ng-include="'views/basket/nav.html'"></div>
+
+  <div class="comments-container">
+    <div class="comments-list-container">
+      <div ng-repeat="comment in comments" class="comment-container">
+        <div class="comment-header">
+          <div class="comment-info">
+            <span class="avatar" ng-class="{fallback: !comment.user.avatar}">
+              <img ng-src="{{comment.user.avatar.url}}">
+            </span>
+            <span ng-bind="comment.user.username" class="username"></span>
+            <span class="created-at">said <span am-time-ago="comment.created_at"></span></span>
+          </div>
+          <div class="actions" ng-if="isCurrentUser(comment.user)">
+            <span class="ion ion-edit" ng-click="edit(comment)"></span>
+            <a ui-sref="map.app.basket.comment.delete({basketId: basket.id, commentId: comment.id})" class="ion ion-trash-b"></a>
+          </div>
+        </div>
+
+        <div ng-bind-html="comment.comment | simpleFormat" class="comment" ng-if="!showEditForm(comment)"></div>
+
+        <div ng-if="showEditForm(comment)">
+          <form ng-submit="update(comment)" class="sec">
+            <div>
+              <textarea ng-model="comment.comment" placeholder="Leave a Comment" class="comment" required></textarea>
+            </div>
+            <div class="submit">
+              <span ng-click="edit(null)">Cancel</span>
+              <button type="submit" class="btn btn-sec">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <div ng-if="currentUser">
+        <div class="avatar" ng-class="{fallback: !currentUser.avatar}">
+          <img ng-src="{{currentUser.avatar.url}}" ng-alt="{{currentUser.username}}">
+        </div>
+        <form ng-submit="create()">
+          <div>
+            <textarea ng-model="comment.comment" placeholder="Leave a Comment" class="comment" required></textarea>
+          </div>
+          <div class="submit">
+            <button type="submit" class="btn">Save</button>
+          </div>
+        </form>
+      </div>
+      <div ng-if="!currentUser">
+        <a ui-sref="map.app.sign.in" class="btn">Sign In to Comment</a>
+      </div>
+    </div>
+  </div>
+</div>

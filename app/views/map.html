@@ -1,0 +1,19 @@
+<google-map
+  id="map"
+  center="map.center"
+  zoom="map.zoom"
+  draggable="true"
+  options="map.options"
+  events="map.events">
+
+  <markers
+    models="map.baskets"
+    coords="'self'"
+    doCluster="true"
+    click="'show'"
+    fit="false"
+    clusterOptions="map.markers.clusterOptions">
+  </markers>
+</google-map>
+
+<div ui-view class="app-container"></div>

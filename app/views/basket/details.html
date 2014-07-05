@@ -1,0 +1,49 @@
+<div>
+  <korbjagd-header></korbjagd-header>
+
+  <div ng-include="'views/basket/nav.html'"></div>
+
+  <div>
+    <div class="sidebar-container">
+      <div class="image basket" ng-class="{fallback: !basket.photo}">
+        <img ng-src="{{basket.photo.url}}">
+      </div>
+      <div class="upload-container" ng-if="isCurrentUser(basket.user)">
+        <ul class="actions">
+          <li>
+            <label class="file-input">
+              Photo <image-input model="image">
+            </label>
+          </li>
+          <li>
+            <a ui-sref="map.app.basket.edit({basketId: basket.id})" class="btn-sec">
+              Edit
+            </a>
+          </li>
+          <li>
+            <a ui-sref="map.app.basket.delete({basketId: basket.id})" class="btn-sec">
+              Delete
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="details-container">
+      <h2 ng-bind="basket.name"></h2>
+
+      <div class="user-container">
+        Added by
+        <span ng-bind="basket.user.username"></span>
+        <span am-time-ago="basket.created_at"></span>
+      </div>
+
+      <div class="ion ion-ios7-location location-container">
+        <div ng-bind="address"></div>
+        <lat-lng location="basket"></lat-lng>
+      </div>
+
+      <div><span ng-repeat="cat in basket.categories" ng-bind="cat.name"></span></div>
+    </div>
+  </div>
+</div>

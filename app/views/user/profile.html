@@ -1,0 +1,48 @@
+<div class="profile">
+  <korbjagd-header></korbjagd-header>
+
+  <div class="container">
+    <div class="sidebar-container">
+      <div class="image avatar" ng-class="{fallback: !user.avatar}">
+        <img ng-src="{{user.avatar.url}}">
+      </div>
+      <div class="upload-container">
+        <label class="file-input">
+          Avatar
+          <image-input model="image" process="fill" max-width="200" max-height="200">
+        </label>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <form ng-submit="submit()">
+        <div>
+          <span class="error" ng-bind="errors.username"></span>
+          <input type="text" ng-model="user.username" placeholder="Username" disabled required>
+        </div>
+        <div>
+          <span class="error" ng-bind="errors.email"></span>
+          <input type="email" ng-model="user.email" placeholder="Email" required>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" ng-model="user.notifications_enabled">
+            Receive Notifications
+          </label>
+        </div>
+        <div>
+          <span class="error" ng-bind="errors.password"></span>
+          <input type="password" ng-model="user.password" placeholder="New Password">
+        </div>
+        <div>
+          <span class="error" ng-bind="errors.password_confirmation"></span>
+          <input type="password" ng-model="user.password_confirmation" placeholder="Password Confirmation">
+        </div>
+        <div class="submit">
+          <a ui-sref="map.app.profile-delete">Delete Account</a>
+          <button type="submit" class="btn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

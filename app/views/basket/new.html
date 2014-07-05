@@ -1,0 +1,38 @@
+<div>
+  <korbjagd-header></korbjagd-header>
+
+  <div class="sidebar-container">
+    <div class="image basket fallback"></div>
+  </div>
+
+  <div class="confirmation-container" ng-if="show('nearby-note')">
+    <div class="message">
+      <div>
+        There already is a
+        <a ui-sref="map.app.basket.details({basketId: nearbyBaskets[0].id})">basket</a>
+        in this area.
+      </div>
+      <div class="note">
+        Please make sure, that you do <strong>not</strong> add a basket twice.
+      </div>
+    </div>
+
+    <div class="actions">
+      <a ui-sref="map.app.home">Cancel</a>
+      <span class="btn" ng-click="ignoreNearbyBaskets()">Continue</span>
+    </div>
+  </div>
+
+  <div class="confirmation-container" ng-if="show('signin-note')">
+    <div class="message">
+      You need to be signed in to add new baskets.
+    </div>
+
+    <div class="actions">
+      <a ui-sref="map.app.home">Cancel</a>
+      <a ui-sref="map.app.sign.in" class="btn">Sign In</a>
+    </div>
+  </div>
+
+  <div ng-include="'views/basket/form.html'" ng-if="show('form')"></div>
+</div>

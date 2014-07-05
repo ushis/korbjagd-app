@@ -1,0 +1,11 @@
+<div>
+  <korbjagd-header></korbjagd-header>
+
+  <div class="sidebar-container">
+    <div class="image basket" ng-class="{fallback: !basket.photo}">
+      <img ng-src="{{basket.photo.url}}">
+    </div>
+  </div>
+
+  <div ng-include="'views/basket/form.html'"></div>
+<div>
