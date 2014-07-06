@@ -8,7 +8,7 @@
       <div class="image basket" ng-class="{fallback: !basket.photo}">
         <img ng-src="{{basket.photo.url}}">
       </div>
-      <div class="upload-container" ng-if="isCurrentUser(basket.user)">
+      <div class="upload-container" ng-if="allowedToEdit()">
         <ul class="actions">
           <li>
             <label class="file-input">
@@ -33,8 +33,8 @@
       <h2 ng-bind="basket.name"></h2>
 
       <div class="user-container">
-        Added by
-        <span ng-bind="basket.user.username"></span>
+        Added
+        <span ng-if="basket.user">by <span ng-bind="basket.user.username"></span></span>
         <span am-time-ago="basket.created_at"></span>
       </div>
 

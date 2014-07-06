@@ -15,6 +15,12 @@ angular
     $scope.map.zoom = 16;
     $scope.map.center = angular.copy($scope.basket);
 
+    // Is the current user allowed to edit the basket?
+    $scope.allowedToEdit = function() {
+      var user = $scope.basket.user;
+      return $scope.getCurrentUser() && (!user || $scope.isCurrentUser(user));
+    };
+
     // Try to find the address of the basket
     Address.get($scope.basket, function(address) {
       $scope.address = address;

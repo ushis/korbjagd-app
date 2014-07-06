@@ -3,7 +3,7 @@
 angular
   .module('korbjagdApp')
   .controller('BasketEditCtrl', function($scope, $filter, categories, Basket) {
-    if (!$scope.isCurrentUser($scope.basket.user)) {
+    if (!$scope.allowedToEdit()) {
       $scope.showBasket($scope.basket);
     }
     $scope.setTitle('Edit', $scope.basket.name);
@@ -29,7 +29,7 @@ angular
 
       Basket.update({basket: basket}).$promise
         .then(function(resp) {
-          $scope.basket.categories = resp.basket.categories;
+          angular.extend($scope.basket, resp.basket);
           $scope.setBasket($scope.basket);
           $scope.showBasket($scope.basket);
         })

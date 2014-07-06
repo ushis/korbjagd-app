@@ -3,7 +3,7 @@
 angular
   .module('korbjagdApp')
   .controller('BasketDeleteCtrl', function($scope, $state, Basket) {
-    if (!$scope.isCurrentUser($scope.basket.user)) {
+    if (!$scope.allowedToEdit()) {
       $scope.showBasket($scope.basket);
     }
     $scope.setTitle('Delete', $scope.basket.name);
