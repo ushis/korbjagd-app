@@ -30,7 +30,6 @@ angular
       Basket.update({basket: basket}).$promise
         .then(function(resp) {
           angular.extend($scope.basket, resp.basket);
-          $scope.setBasket($scope.basket);
           $scope.showBasket($scope.basket);
         })
         .catch(function(resp) {
