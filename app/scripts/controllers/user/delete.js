@@ -10,8 +10,7 @@ angular
 
     $scope.delete = function() {
       User.delete({userId: $scope.getCurrentUser().id}, function() {
-        $scope.setCurrentUser(null);
-        $state.go('map.app.home');
+        $scope.signOut();
       });
     };
   });
