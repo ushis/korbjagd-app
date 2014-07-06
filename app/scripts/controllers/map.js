@@ -36,7 +36,7 @@ angular
       var ne = bounds.getNorthEast();
 
       var params = {
-        'bounds[]': [
+        'inside[]': [
           [sw.lat(), sw.lng()].join(','),
           [ne.lat(), ne.lng()].join(',')
         ]

@@ -92,7 +92,7 @@ angular
               [lat + r, lng + r].join(',')
             ];
 
-            return Basket.query({'bounds[]': bounds}).$promise;
+            return Basket.query({'inside[]': bounds}).$promise;
           }]
         }
       })
