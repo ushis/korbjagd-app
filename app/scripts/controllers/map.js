@@ -3,30 +3,37 @@
 angular
   .module('korbjagdApp')
   .controller('MapCtrl', function($scope, $state, $timeout, $document, $window,
-                                  _, geolocation, google, Basket) {
-
-    // Hash containing all loaded Baskets
-    $scope.allBaskets = {};
-
-    // Sets a baskets in the hash of loaded baskets
-    $scope.setBasket = function(basket) {
-      basket.show = function() { $scope.showBasket(basket); };
-      $scope.allBaskets[basket.id] = basket;
-    };
-
-    // Removes a basket from the hash of loaded baskets
-    $scope.rmBasket = function(basket) {
-      delete($scope.allBaskets[basket.id]);
-    };
-
-    // Keep map.baskets and allBaskets in sync.
-    $scope.$watch('allBaskets', function() {
-      $scope.map.baskets = _.toArray($scope.allBaskets);
-    }, true);
+                                  _, geolocation, google, BasketRepo) {
 
     // Goes to a basket
     $scope.showBasket = function(basket) {
       $state.go('map.app.basket.details', {basketId: basket.id});
+    };
+
+    $scope.applyBaskets = function(baskets) {
+      if (!baskets) {
+        baskets = BasketRepo.getAll();
+      }
+
+      baskets.forEach(function(basket) {
+        if (!basket.show) {
+          basket.show = function() { $scope.showBasket(basket); };
+        }
+      });
+
+      $scope.map.baskets = baskets;
+    };
+
+    // Set a basket in the repo
+    $scope.setBasket = function(basket) {
+      BasketRepo.set(basket);
+      $scope.applyBaskets();
+    };
+
+    // Removes a basket from the repo
+    $scope.rmBasket = function(basket) {
+      BasketRepo.rm(basket);
+      $scope.applyBaskets();
     };
 
     // Loads additional baskets
@@ -34,18 +41,10 @@ angular
       var bounds = $scope.map.instance.getBounds();
       var sw = bounds.getSouthWest();
       var ne = bounds.getNorthEast();
+      var points = [[sw.lat(), sw.lng()], [ne.lat(), ne.lng()]];
 
-      var params = {
-        'inside[]': [
-          [sw.lat(), sw.lng()].join(','),
-          [ne.lat(), ne.lng()].join(',')
-        ]
-      };
-
-      Basket.query(params, function(resp) {
-        resp.baskets.forEach(function(basket) {
-          $scope.setBasket(basket);
-        });
+      BasketRepo.get(points, function(baskets) {
+        $scope.applyBaskets(baskets);
       });
     };
 
