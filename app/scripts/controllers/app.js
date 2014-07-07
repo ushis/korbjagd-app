@@ -24,7 +24,8 @@ angular
 
     // Returns true if the current user is an admin else false
     $scope.isAdmin = function() {
-      return $scope.getCurrentUser().admin === true;
+      var user = $scope.getCurrentUser();
+      return user && user.admin === true;
     };
 
     // Checks if the passwd user is the current user
