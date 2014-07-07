@@ -14,7 +14,7 @@
             <span ng-bind="comment.user.username" class="username"></span>
             <span class="created-at">said <span am-time-ago="comment.created_at"></span></span>
           </div>
-          <div class="actions" ng-if="isCurrentUser(comment.user)">
+          <div class="actions" ng-if="allowedToEditComment(comment)">
             <span class="ion ion-edit" ng-click="edit(comment)"></span>
             <a ui-sref="map.app.basket.comment.delete({basketId: basket.id, commentId: comment.id})" class="ion ion-trash-b"></a>
           </div>

@@ -15,10 +15,19 @@ angular
     $scope.map.zoom = 16;
     $scope.map.center = angular.copy($scope.basket);
 
-    // Is the current user allowed to edit the basket?
+    // Returns true if the current user is allowed to edit the current basket
+    // else false
     $scope.allowedToEdit = function() {
-      var user = $scope.basket.user;
-      return $scope.getCurrentUser() && (!user || $scope.isCurrentUser(user));
+      var owner = $scope.basket.user;
+
+      return $scope.getCurrentUser() &&
+        ($scope.isAdmin() || !owner || $scope.isCurrentUser(owner));
+    };
+
+    // Returns true if the current user is allowed to edit the comment
+    // else false
+    $scope.allowedToEditComment = function(comment) {
+      return $scope.isAdmin() || $scope.isCurrentUser(comment.user);
     };
 
     // Try to find the address of the basket

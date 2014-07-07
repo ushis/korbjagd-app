@@ -3,7 +3,7 @@
 angular
   .module('korbjagdApp')
   .controller('CommentDeleteCtrl', function($scope, $state, comment, Comment) {
-    if (!$scope.isCurrentUser(comment.comment.user)) {
+    if (!$scope.allowedToEditComment(comment.comment)) {
       $state.go('map.app.basket.comments', {basketId: $scope.basket.id});
     }
     $scope.setTitle('Delete Comment', $scope.basket.name);
