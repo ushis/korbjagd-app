@@ -2,14 +2,14 @@
 
 angular
   .module('korbjagdApp')
-  .controller('UserDeleteCtrl', function($scope, $state, User) {
+  .controller('UserDeleteCtrl', function($scope, $state, Profile) {
     if (!$scope.getCurrentUser()) {
       $state.go('map.app.home');
     }
     $scope.setTitle('Delete Account');
 
     $scope.delete = function() {
-      User.delete({userId: $scope.getCurrentUser().id}, function() {
+      Profile.delete(function() {
         $scope.signOut();
       });
     };
