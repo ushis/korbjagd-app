@@ -3,17 +3,29 @@
 angular
   .module('korbjagdApp')
   .controller('PasswordResetCtrl', function($scope, $state, $stateParams,
-                                            Profile, Auth) {
+                                            $filter, PasswordReset, Auth) {
 
     $scope.showWarning = false;
-    Auth.setToken($stateParams.token);
+    $scope.user = {password: null, password_confirmation: null};
 
-    Profile.get().$promise
-      .then(function(resp) {
-        $scope.setCurrentUser(resp.user);
-        $state.go('map.app.profile');
-      })
-      .catch(function() {
-        $scope.showWarning = true;
-      });
+    if (!Auth.setToken($stateParams.token)) {
+      $scope.showWarning = true;
+    }
+
+    $scope.submit = function() {
+      $scope.errors = {};
+
+      PasswordReset.update({user: $scope.user}).$promise
+        .then(function() {
+          Auth.destroyToken();
+          $state.go('map.app.sign.in');
+        })
+        .catch(function(resp) {
+          var titleize = $filter('titleize');
+
+          angular.forEach(resp.data.details, function(details, attr) {
+            $scope.errors[attr] = [titleize(attr), details[0]].join(' ');
+          });
+        });
+    };
   })

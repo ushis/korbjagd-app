@@ -11,3 +11,20 @@
     <a ui-sref="map.app.password.forgot" class="btn">Try Again</a>
   </div>
 </div>
+
+<div ng-if="!showWarning">
+  <form ng-submit="submit()">
+    <div>
+      <span class="error" ng-bind="errors.password"></span>
+      <input type="password" ng-model="user.password" placeholder="New Password" required>
+    </div>
+    <div>
+      <span class="error" ng-bind="errors.password_confirmation"></span>
+      <input type="password" ng-model="user.password_confirmation" placeholder="Password Confirmation" required>
+    </div>
+    <div class="submit">
+      <a ui-sref="map.app.home">Cancel</a>
+      <button type="submit" class="btn">Save</button>
+    </div>
+  </form>
+</div>
