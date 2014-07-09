@@ -1,0 +1,26 @@
+<div>
+  <korbjagd-header></korbjagd-header>
+
+  <div class="sidebar-container">
+    <div class="image error fallback"></div>
+  </div>
+
+  <div class="confirmation-container">
+    <h2>
+      <span ng-bind="error.status"></span>
+      <span ng-bind="error.error"></span>
+    </h2>
+
+    <div class="message">
+      <div ng-bind="error.message"></div>
+      <div class="note">
+        <strong>Note:</strong>
+        <span ng-bind="error.note"></span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a ui-sref="map.app.home" class="btn">OK</a>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,11 @@ angular
       .state('map.app.home', {
         url: '/'
       })
+      .state('map.app.error', {
+        url: '/errors/:status',
+        templateUrl: 'views/error.html',
+        controller: 'ErrorCtrl'
+      })
       .state('map.app.sign', {
         templateUrl: 'views/user/sign.html'
       })

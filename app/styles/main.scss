@@ -389,6 +389,11 @@ form {
         background-image: image-url('comment.svg');
       }
 
+      &.error {
+        // FIXME
+        background-image: image-url('avatar.svg');
+      }
+
       img {
         display: none;
       }
