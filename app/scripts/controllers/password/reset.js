@@ -13,8 +13,6 @@ angular
     }
 
     $scope.submit = function() {
-      $scope.errors = {};
-
       PasswordReset.update({user: $scope.user}).$promise
         .then(function() {
           Auth.destroyToken();
@@ -22,6 +20,7 @@ angular
         })
         .catch(function(resp) {
           var titleize = $filter('titleize');
+          $scope.errors = {};
 
           angular.forEach(resp.data.details, function(details, attr) {
             $scope.errors[attr] = [titleize(attr), details[0]].join(' ');

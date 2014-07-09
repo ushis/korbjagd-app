@@ -3,7 +3,7 @@
 angular
   .module('korbjagdApp')
   .factory('Avatar', function($resource, ENV) {
-    return $resource(ENV.api + '/users/:userId/avatar', {}, {
+    return $resource(ENV.api + '/profile/avatar', {}, {
       update: {method: 'PATCH'}
     });
   });

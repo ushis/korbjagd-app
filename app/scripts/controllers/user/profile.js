@@ -23,7 +23,7 @@ angular
       $scope.user.avatar = {url: $scope.image.url};
       var data = {avatar: {image: $scope.image.url}};
 
-      Avatar.update({userId: $scope.user.id}, data, function(resp) {
+      Avatar.update(data, function(resp) {
         $scope.currentUser.avatar = resp.avatar;
         $scope.user.avatar = resp.avatar;
       });
@@ -37,7 +37,6 @@ angular
         delete(user.password);
         delete(user.password_confirmation);
       }
-      $scope.errors = {};
 
       Profile.update({user: user}).$promise
         .then(function(resp) {
@@ -46,6 +45,7 @@ angular
         })
         .catch(function(resp) {
           var titleize = $filter('titleize');
+          $scope.errors = {};
 
           angular.forEach(resp.data.details, function(details, attr) {
             $scope.errors[attr] = [titleize(attr), details[0]].join(' ');

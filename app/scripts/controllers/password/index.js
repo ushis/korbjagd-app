@@ -7,6 +7,5 @@ angular
       $state.go('map.app.profile');
     }
     $scope.setTitle('Password Reset');
-
     $scope.user = {email: null};
   });

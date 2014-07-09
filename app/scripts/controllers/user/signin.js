@@ -16,8 +16,6 @@ angular
     };
 
     $scope.submit = function() {
-      $scope.error = null;
-
       Session.save({user: angular.copy($scope.user)}).$promise
         .then(function(resp) {
           $window.localStorage.username = resp.user.username;

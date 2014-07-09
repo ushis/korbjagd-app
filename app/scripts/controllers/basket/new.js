@@ -46,8 +46,6 @@ angular
         }
       });
 
-      $scope.errors = {};
-
       Basket.save({basket: basket}).$promise
         .then(function(resp) {
           $scope.setBasket(resp.basket);
@@ -55,6 +53,7 @@ angular
         })
         .catch(function(resp) {
           var titleize = $filter('titleize');
+          $scope.errors = {};
 
           angular.forEach(resp.data.details, function(details, attr) {
             $scope.errors[attr] = [titleize(attr), details[0]].join(' ');

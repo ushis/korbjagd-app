@@ -2,7 +2,7 @@
 
 angular
   .module('korbjagdApp')
-  .controller('SignupCtrl', function($scope, $state, $window, $filter, User) {
+  .controller('SignupCtrl', function($scope, $state, $window, $filter, Profile) {
     if ($scope.getCurrentUser()) {
       $state.go('map.app.home');
     }
@@ -16,15 +16,14 @@ angular
     };
 
     $scope.submit = function() {
-      $scope.errors = {};
-
-      User.save({user: angular.copy($scope.user)}).$promise
+      Profile.save({user: angular.copy($scope.user)}).$promise
         .then(function(resp) {
           $window.localStorage.username = resp.user.username;
           $state.go('map.app.sign.in');
         })
         .catch(function(resp) {
           var titleize = $filter('titleize');
+          $scope.errors = {};
 
           angular.forEach(resp.data.details, function(details, attr) {
             $scope.errors[attr] = [titleize(attr), details[0]].join(' ');

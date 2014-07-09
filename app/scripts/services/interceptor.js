@@ -2,7 +2,7 @@
 
 angular
   .module('korbjagdApp')
-  .factory('Interceptor', function($injector, Auth, ENV) {
+  .factory('Interceptor', function($q, $injector, Auth, ENV) {
 
     // Returns true if the given url is a API url
     var isApiUrl = function(url) {
@@ -29,7 +29,7 @@ angular
         if ([403, 404, 500].indexOf(resp.status) > -1) {
           $injector.get('$state').go('map.app.error', {status: resp.status});
         }
-        return resp;
+        return $q.reject(resp);
       }
     };
   });
