@@ -32,8 +32,14 @@ angular
 
     // Removes a basket from the repo
     $scope.rmBasket = function(basket) {
-      BasketRepo.rm(basket);
-      $scope.applyBaskets();
+      $timeout(function() {
+        // Works around a bug in angular-google-maps
+        $scope.map.baskets = [];
+        $scope.$apply();
+        BasketRepo.rm(basket);
+        $scope.applyBaskets();
+        $scope.$apply();
+      });
     };
 
     // Loads additional baskets
