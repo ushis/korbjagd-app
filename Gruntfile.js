@@ -402,7 +402,7 @@ module.exports = function (grunt) {
       // Environment targets
       development: {
         options: {
-          dest: '<%= yeoman.app %>/scripts/config.js'
+          dest: '.tmp/scripts/config.js'
         },
         constants: {
           ENV: {
@@ -413,7 +413,7 @@ module.exports = function (grunt) {
       },
       production: {
         options: {
-          dest: '<%= yeoman.dist %>/scripts/config.js'
+          dest: '.tmp/scripts/config.js'
         },
         constants: {
           ENV: {
@@ -429,7 +429,7 @@ module.exports = function (grunt) {
       korbjagdApp: {
         cwd: '<%= yeoman.app %>',
         src: 'views/**/*.html',
-        dest: '<%= yeoman.app %>/scripts/templates.js',
+        dest: '.tmp/scripts/templates.js',
         options: {
           htmlmin: {
             collapseBooleanAttributes: true,
