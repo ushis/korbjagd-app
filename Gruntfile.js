@@ -48,6 +48,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass:server', 'autoprefixer']
       },
+      ngtemplates: {
+        files: ['<%= yeoman.app %>/views/{,*/*.html}'],
+        tasks: ['ngtemplates']
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -418,6 +422,27 @@ module.exports = function (grunt) {
           }
         }
       }
+    },
+
+    // Templates
+    ngtemplates: {
+      korbjagdApp: {
+        cwd: '<%= yeoman.app %>',
+        src: 'views/**/*.html',
+        dest: '<%= yeoman.app %>/scripts/templates.js',
+        options: {
+          htmlmin: {
+            collapseBooleanAttributes: true,
+            collapseWhitespace: true,
+            removeAttributeQuotes: false,
+            removeComments: true,
+            removeEmptyAttributes: true,
+            removeRedundantAttributes: false,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true
+          }
+        }
+      }
     }
   });
 
@@ -430,6 +455,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'ngconstant:development',
+      'ngtemplates',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -454,6 +480,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'ngconstant:production',
+    'ngtemplates',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
