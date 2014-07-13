@@ -38,6 +38,10 @@
           <span class="error" ng-bind="errors.password_confirmation"></span>
           <input type="password" ng-model="user.password_confirmation" placeholder="Password Confirmation">
         </div>
+        <div>
+          <span class="error" ng-bind="errors.password_current"></span>
+          <input type="password" ng-model="user.password_current" placeholder="Current Password" required>
+        </div>
         <div class="submit">
           <a ui-sref="map.app.profile-delete">Delete Account</a>
           <button type="submit" class="btn">Save Changes</button>

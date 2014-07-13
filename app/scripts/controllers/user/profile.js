@@ -10,7 +10,8 @@ angular
 
     $scope.user = angular.extend({
       password: null,
-      password_confirmation: null
+      password_confirmation: null,
+      password_current: null
     }, $scope.getCurrentUser());
 
     $scope.image = {};
@@ -51,8 +52,13 @@ angular
             $scope.errors[attr] = [titleize(attr), details[0]].join(' ');
           });
 
+          if (resp.status === 401) {
+            $scope.errors.password_current = 'Oh no! That wasn\'t correct. Maybe a typo?';
+          }
+
           $scope.user.password = null;
           $scope.user.password_confirmation = null;
+          $scope.user.password_current = null;
         });
     };
   });
