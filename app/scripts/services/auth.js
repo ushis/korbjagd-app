@@ -5,7 +5,7 @@ angular
   .factory('Auth', function($q, $window) {
     return {
       getToken: function() {
-        var token = $window.sessionStorage.authToken;
+        var token = $window.localStorage.authToken;
 
         if (!this.isValidToken(token)) {
           return null;
@@ -16,11 +16,11 @@ angular
         if (!this.isValidToken(token)) {
           return false;
         }
-        $window.sessionStorage.authToken = token;
+        $window.localStorage.authToken = token;
         return true;
       },
       destroyToken: function() {
-        $window.sessionStorage.authToken = null;
+        $window.localStorage.authToken = null;
       },
       isValidToken: function(token) {
         var claims;

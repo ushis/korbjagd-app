@@ -19,9 +19,15 @@
       </div>
     </div>
 
-    <div class="actions">
-      <a ui-sref="map.app.profile">Cancel</a>
-      <span class="btn" ng-click="delete()">Delete</span>
-    </div>
+    <form ng-submit="submit()">
+      <div>
+        <span class="error" ng-bind="error"></span>
+        <input type="password" ng-model="user.password" placeholder="Confirm with your Password" required>
+      </div>
+      <div class="submit">
+        <a ui-sref="map.app.profile">Cancel</a>
+        <button type="submit" class="btn">Delete</button>
+      </div>
+    </form>
   </div>
 </div>
