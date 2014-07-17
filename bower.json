@@ -10,7 +10,7 @@
     "angular-touch": "1.2.16",
     "angular-route": "1.2.16",
     "angular-ui-router": "~0.2.10",
-    "angular-google-maps": "~1.1.7",
+    "angular-google-maps": "~1.1.8",
     "angular-ui-utils": "~0.1.1",
     "angularjs-geolocation": "~0.1.1",
     "ionicons": "~1.5.2",
