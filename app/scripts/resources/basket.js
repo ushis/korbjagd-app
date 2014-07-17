@@ -7,7 +7,10 @@ angular
       basketId: '@basket.id'
     }, {
       update: {method: 'PATCH'},
-      query: {method: 'GET'}
+      query: {
+        method: 'GET',
+        url: ENV.api + '/sectors/:sectorId/baskets'
+      }
     });
   });
 

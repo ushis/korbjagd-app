@@ -87,17 +87,8 @@ angular
           categories: ['Category', function(Category) {
             return Category.query().$promise;
           }],
-          nearbyBaskets: ['$stateParams', 'Basket', function($stateParams, Basket) {
-            var r = 0.00045; // ~ 50 meters
-            var lat = parseFloat($stateParams.latitude);
-            var lng = parseFloat($stateParams.longitude);
-
-            var bounds = [
-              [lat - r, lng - r].join(','),
-              [lat + r, lng + r].join(',')
-            ];
-
-            return Basket.query({'inside[]': bounds}).$promise;
+          nearbyBaskets: ['$stateParams', 'BasketRepo', function($stateParams, BasketRepo) {
+            return BasketRepo.nearby($stateParams.latitude, $stateParams.longitude);
           }]
         }
       })

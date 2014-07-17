@@ -38,12 +38,9 @@ angular
 
     // Loads additional baskets
     var loadBaskets = function() {
-      var bounds = $scope.map.instance.getBounds();
-      var sw = bounds.getSouthWest();
-      var ne = bounds.getNorthEast();
-      var points = [[sw.lat(), sw.lng()], [ne.lat(), ne.lng()]];
+      var b = $scope.map.instance.getBounds();
 
-      BasketRepo.get(points, function(baskets) {
+      BasketRepo.get(b.getSouthWest(), b.getNorthEast(), function(baskets) {
         $scope.applyBaskets(baskets);
       });
     };
@@ -108,6 +105,7 @@ angular
       zoom: 12,
       baskets: [],
       options: {
+        minZoom: 5,
         disableDoubleClickZoom: true,
         disableDefaultUI: true,
         zoomControl: true,
