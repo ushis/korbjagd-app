@@ -10,10 +10,11 @@ angular
       $state.go('map.app.basket.details', {basketId: basket.id});
     };
 
-    $scope.applyBaskets = function(baskets) {
-      if (!baskets) {
-        baskets = BasketRepo.getAll();
-      }
+    // Applies all known baskets to the map
+    //
+    // Debounced to work around a strange bug in angular-google-maps
+    $scope.applyBaskets = _.debounce(function() {
+      var baskets = BasketRepo.getAll();
 
       baskets.forEach(function(basket) {
         if (!basket.show) {
@@ -22,7 +23,8 @@ angular
       });
 
       $scope.map.baskets = baskets;
-    };
+      $scope.$apply();
+    }, 10);
 
     // Set a basket in the repo
     $scope.setBasket = function(basket) {
@@ -40,8 +42,8 @@ angular
     var loadBaskets = function() {
       var b = $scope.map.instance.getBounds();
 
-      BasketRepo.get(b.getSouthWest(), b.getNorthEast(), function(baskets) {
-        $scope.applyBaskets(baskets);
+      BasketRepo.get(b.getSouthWest(), b.getNorthEast(), function() {
+        $scope.applyBaskets();
       });
     };
 
