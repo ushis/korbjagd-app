@@ -24,7 +24,7 @@ angular
 
       $scope.map.baskets = baskets;
       $scope.$apply();
-    }, 10);
+    }, 100);
 
     // Set a basket in the repo
     $scope.setBasket = function(basket) {
@@ -58,7 +58,7 @@ angular
       map.draggable = true;
 
       // Load additional baskets on bounds change
-      map.addListener('bounds_changed', _.debounce(loadBaskets, 600));
+      map.addListener('bounds_changed', loadBaskets);
 
       // Open basket form on double click
       map.addListener('dblclick', function(e) {
