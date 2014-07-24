@@ -16,24 +16,21 @@ angular
     // Sets the current user
     $scope.setCurrentUser = function(user) {
       $timeout(function() {
-        $scope.$apply(function() {
-          $scope.currentUser = user;
-        });
+        $scope.currentUser = user;
+        $scope.$apply();
       });
+    };
+
+    // Checks if the passed user is the current user
+    $scope.isCurrentUser = function(user) {
+      var currentUser = $scope.getCurrentUser();
+      return currentUser && user && currentUser.id === user.id;
     };
 
     // Returns true if the current user is an admin else false
     $scope.isAdmin = function() {
       var user = $scope.getCurrentUser();
       return user && user.admin === true;
-    };
-
-    // Checks if the passwd user is the current user
-    $scope.isCurrentUser = function(user) {
-      if ($scope.currentUser && user) {
-        return $scope.currentUser.id === user.id;
-      }
-      return false;
     };
 
     // Destroys the auth token and unsets the current user
@@ -50,9 +47,7 @@ angular
 
     // Generates the CSS state class
     var updateStateClass = function(state) {
-      var names = state.name.split('.');
-      names.splice(0, 2, 'state');
-      $scope.appClass = names.join('-');
+      $scope.appClass = 'state-' + state.name.split('.').slice(2).join('-');
     };
 
     $rootScope.$on('$stateChangeSuccess', function(_, newState) {
