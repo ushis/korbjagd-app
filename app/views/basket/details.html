@@ -43,7 +43,9 @@
         <lat-lng location="basket"></lat-lng>
       </div>
 
-      <div><span ng-repeat="cat in basket.categories" ng-bind="cat.name"></span></div>
+      <div class="categories-container">
+        <span ng-repeat="cat in basket.categories" ng-bind="cat.name"></span>
+      </div>
     </div>
   </div>
 </div>
