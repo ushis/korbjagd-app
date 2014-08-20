@@ -24,6 +24,15 @@ angular
         ($scope.isAdmin() || !owner || $scope.isCurrentUser(owner));
     };
 
+    // Returns true if the current user is allowed to upload a new photo
+    // else false
+    $scope.allowedToUpload = function() {
+      return $scope.getCurrentUser() &&
+        ($scope.basket.photo === null ||
+         $scope.isCurrentUser($scope.basket.photo.user) ||
+         $scope.allowedToEdit());
+    };
+
     // Returns true if the current user is allowed to edit the comment
     // else false
     $scope.allowedToEditComment = function(comment) {

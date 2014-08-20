@@ -8,19 +8,19 @@
       <div class="image basket" ng-class="{fallback: !basket.photo}">
         <img ng-src="{{basket.photo.url}}">
       </div>
-      <div class="upload-container" ng-if="allowedToEdit()">
+      <div class="upload-container">
         <ul class="actions">
-          <li>
+          <li ng-if="allowedToUpload()">
             <label class="file-input">
               Photo <image-input model="image">
             </label>
           </li>
-          <li>
+          <li ng-if="allowedToEdit()">
             <a ui-sref="map.app.basket.edit({basketId: basket.id})" class="btn-sec">
               Edit
             </a>
           </li>
-          <li>
+          <li ng-if="allowedToEdit()">
             <a ui-sref="map.app.basket.delete({basketId: basket.id})" class="btn-sec">
               Delete
             </a>
